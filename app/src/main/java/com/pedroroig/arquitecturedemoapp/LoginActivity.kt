@@ -2,7 +2,7 @@ package com.pedroroig.arquitecturedemoapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 class LoginActivity : AppCompatActivity() {
@@ -13,6 +13,13 @@ class LoginActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this)[LoginViewModel::class.java]
 
+        viewModel.stateLiveData.observe(this, Observer {
+            render(it)
+        })
+
+    }
+
+    private fun render(viewState: LoginViewState) {
 
     }
 }
