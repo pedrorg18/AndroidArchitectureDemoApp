@@ -34,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
 
             if(showPasswordField) edit_text_pass.show()
             else edit_text_pass.hide()
+
+            if(showButton) button_ok.show()
+            else button_ok.hide()
         }
     }
 }

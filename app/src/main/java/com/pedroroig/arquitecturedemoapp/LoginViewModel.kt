@@ -14,6 +14,7 @@ class LoginViewModel : ViewModel() {
     private fun initialState() = LoginViewState(
         null,
         "",
+        true,
         true
         )
 
