@@ -20,6 +20,8 @@ class LoginActivity : AppCompatActivity() {
             render(it)
         })
 
+        viewModel.load()
+
     }
 
     private fun render(viewState: LoginViewState) {
