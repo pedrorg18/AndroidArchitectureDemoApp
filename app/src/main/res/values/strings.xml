@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ArquitectureDemoApp</string>
+    <string name="user">User</string>
+    <string name="insert_user_name">Insert user name</string>
+    <string name="insert_pass">Insert password</string>
+    <string name="login_successful">Login successful!</string>
 </resources>
