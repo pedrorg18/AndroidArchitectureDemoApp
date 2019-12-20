@@ -1,10 +1,12 @@
 package com.pedroroig.arquitecturedemoapp
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.pedroroig.arquitecturedemoapp.router.IRouter
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Rule
+import org.mockito.Mockito.*
 
 class LoginViewModelTest {
 
@@ -14,7 +16,8 @@ class LoginViewModelTest {
 
     @Test
     fun load() {
-        val vm = LoginViewModel()
+        val mockRouter = mock(IRouter::class.java)
+        val vm = LoginViewModel(mockRouter)
         vm.load()
         assertEquals(
             LoginViewState(null,
@@ -26,13 +29,9 @@ class LoginViewModelTest {
 
     @Test
     fun loginUser() {
-        val vm = LoginViewModel()
+        val mockRouter = mock(IRouter::class.java)
+        val vm = LoginViewModel(mockRouter)
         vm.loginUser()
-        assertEquals(
-            LoginViewState("Login successful!",
-                null,
-                false,
-                false),
-            vm.stateLiveData.value)
+        verify(mockRouter, times(1)).navigateToUserProfile()
     }
 }
