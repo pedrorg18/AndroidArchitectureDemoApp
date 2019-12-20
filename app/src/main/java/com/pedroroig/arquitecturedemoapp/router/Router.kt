@@ -2,7 +2,7 @@ package com.pedroroig.arquitecturedemoapp.router
 
 import android.content.Context
 import android.content.Intent
-import com.pedroroig.arquitecturedemoapp.UserProfileActivity
+import com.pedroroig.arquitecturedemoapp.features.userprofile.UserProfileActivity
 
 class Router(private val ctx: Context) : IRouter {
 

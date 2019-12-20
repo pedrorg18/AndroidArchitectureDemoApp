@@ -1,7 +1,8 @@
-package com.pedroroig.arquitecturedemoapp
+package com.pedroroig.arquitecturedemoapp.features.userprofile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.pedroroig.arquitecturedemoapp.R
 
 class UserProfileActivity : AppCompatActivity() {
 

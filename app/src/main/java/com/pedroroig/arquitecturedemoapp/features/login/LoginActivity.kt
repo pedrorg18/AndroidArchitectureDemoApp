@@ -1,8 +1,9 @@
-package com.pedroroig.arquitecturedemoapp
+package com.pedroroig.arquitecturedemoapp.features.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.pedroroig.arquitecturedemoapp.R
 import com.pedroroig.arquitecturedemoapp.extensions.hide
 import com.pedroroig.arquitecturedemoapp.extensions.show
 import kotlinx.android.synthetic.main.activity_login.*
@@ -13,7 +14,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val viewModel = LoginViewModel.LoginViewModelFactory(this).create(LoginViewModel::class.java)
+        val viewModel = LoginViewModel.LoginViewModelFactory(
+            this
+        ).create(LoginViewModel::class.java)
 
         viewModel.stateLiveData.observe(this, Observer {
             render(it)

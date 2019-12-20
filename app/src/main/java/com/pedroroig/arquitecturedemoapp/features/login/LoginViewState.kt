@@ -1,4 +1,4 @@
-package com.pedroroig.arquitecturedemoapp
+package com.pedroroig.arquitecturedemoapp.features.login
 
 data class LoginViewState (
     val infoMessage: String?,

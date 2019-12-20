@@ -1,4 +1,4 @@
-package com.pedroroig.arquitecturedemoapp
+package com.pedroroig.arquitecturedemoapp.features.login
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -30,17 +30,20 @@ class LoginViewModel(private val router: IRouter) : ViewModel() {
 //        false
 //    )
 
-    private fun initialState() = LoginViewState(
-        null,
-        "",
-        true,
-        true
+    private fun initialState() =
+        LoginViewState(
+            null,
+            "",
+            true,
+            true
         )
 
     class LoginViewModelFactory(private val ctx: Context) : ViewModelProvider.NewInstanceFactory() {
 
         @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>) = LoginViewModel(Router(ctx)) as T
+        override fun <T : ViewModel?> create(modelClass: Class<T>) = LoginViewModel(
+            Router(ctx)
+        ) as T
     }
 
 }

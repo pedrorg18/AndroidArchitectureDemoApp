@@ -1,6 +1,8 @@
 package com.pedroroig.arquitecturedemoapp
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.pedroroig.arquitecturedemoapp.features.login.LoginViewModel
+import com.pedroroig.arquitecturedemoapp.features.login.LoginViewState
 import com.pedroroig.arquitecturedemoapp.router.IRouter
 import org.junit.Test
 
