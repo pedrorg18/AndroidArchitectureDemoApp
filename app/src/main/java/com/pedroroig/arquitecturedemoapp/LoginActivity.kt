@@ -22,6 +22,10 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.load()
 
+        button_ok.setOnClickListener {
+            viewModel.loginUser()
+        }
+
     }
 
     private fun render(viewState: LoginViewState) {

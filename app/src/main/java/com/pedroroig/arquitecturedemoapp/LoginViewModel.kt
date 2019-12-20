@@ -11,6 +11,17 @@ class LoginViewModel : ViewModel() {
         stateLiveData.value = initialState()
     }
 
+    fun loginUser() {
+        stateLiveData.value = loginSuccessState()
+    }
+
+    private fun loginSuccessState() = LoginViewState(
+        "Login successful!",
+        null,
+        false,
+        false
+    )
+
     private fun initialState() = LoginViewState(
         null,
         "",
