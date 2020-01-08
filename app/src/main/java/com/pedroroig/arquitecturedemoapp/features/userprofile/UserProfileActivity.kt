@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pedroroig.arquitecturedemoapp.R
 import com.pedroroig.arquitecturedemoapp.extensions.hide
+import com.pedroroig.arquitecturedemoapp.extensions.setTextHideIfNull
 import com.pedroroig.arquitecturedemoapp.extensions.show
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
@@ -29,10 +30,11 @@ class UserProfileActivity : AppCompatActivity() {
     private fun render(viewState: UserProfileViewState) {
         progressBar.hide()
         with(viewState) {
-            text_userprofile_name.text = title
+            text_userprofile_name.setTextHideIfNull(title)
             // image_userprofile set imageUrl with Glide
-            image_userprofile.show()
-            text_userprofile_role.text = role
+            imageUrl?.let { image_userprofile.show() } ?: image_userprofile.hide()
+            text_userprofile_role.setTextHideIfNull(role)
+            text_error.setTextHideIfNull(error)
         }
     }
 

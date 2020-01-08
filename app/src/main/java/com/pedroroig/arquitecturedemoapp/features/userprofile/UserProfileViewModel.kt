@@ -20,7 +20,7 @@ class UserProfileViewModel : ViewModel() {
             }
 
             override fun onError(e: Throwable) {
-
+                viewStateLiveData.value = errorViewState("There was an error retrieving user data")
             }
 
             override fun onSubscribe(d: Disposable) {}
@@ -28,4 +28,8 @@ class UserProfileViewModel : ViewModel() {
         })
 
     }
+
+    private fun errorViewState(errorMessage: String) =
+        UserProfileViewState (null, null, null, errorMessage)
+
 }
