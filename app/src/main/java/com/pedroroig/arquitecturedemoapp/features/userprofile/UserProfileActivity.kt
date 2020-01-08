@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pedroroig.arquitecturedemoapp.R
+import com.pedroroig.arquitecturedemoapp.extensions.hide
+import com.pedroroig.arquitecturedemoapp.extensions.show
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class UserProfileActivity : AppCompatActivity() {
@@ -21,12 +23,15 @@ class UserProfileActivity : AppCompatActivity() {
             render(it)
         })
         viewModel.load()
+        progressBar.show()
     }
 
     private fun render(viewState: UserProfileViewState) {
+        progressBar.hide()
         with(viewState) {
             text_userprofile_name.text = title
             // image_userprofile set imageUrl with Glide
+            image_userprofile.show()
             text_userprofile_role.text = role
         }
     }
