@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pedroroig.arquitecturedemoapp.R
 import com.pedroroig.arquitecturedemoapp.extensions.hide
-import com.pedroroig.arquitecturedemoapp.extensions.setTextHideIfNull
 import com.pedroroig.arquitecturedemoapp.extensions.show
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
@@ -24,18 +23,40 @@ class UserProfileActivity : AppCompatActivity() {
             render(it)
         })
         viewModel.load()
-        progressBar.show()
     }
 
     private fun render(viewState: UserProfileViewState) {
-        progressBar.hide()
-        with(viewState) {
-            text_userprofile_name.setTextHideIfNull(title)
-            // image_userprofile set imageUrl with Glide
-            imageUrl?.let { image_userprofile.show() } ?: image_userprofile.hide()
-            text_userprofile_role.setTextHideIfNull(role)
-            text_error.setTextHideIfNull(error)
+        when(viewState) {
+            is UserProfileViewState.LoadingState -> renderLoading()
+            is UserProfileViewState.ContentState -> renderContent(viewState.content)
+            is UserProfileViewState.ErrorState -> renderError(viewState.message)
         }
+    }
+
+    private fun renderLoading() {
+        progressBar.show()
+    }
+
+    private fun renderContent(contentState: UserProfileContentState) {
+        progressBar.hide()
+        text_error.hide()
+
+        with(contentState) {
+            text_userprofile_name.text = title
+            // image_userprofile set imageUrl with Glide
+            image_userprofile.show()
+            text_userprofile_role.text = role
+        }
+    }
+
+    private fun renderError(message: String) {
+        progressBar.hide()
+        text_userprofile_name.hide()
+        image_userprofile.hide()
+        text_userprofile_role.hide()
+
+        text_error.show()
+        text_error.text = message
     }
 
 }

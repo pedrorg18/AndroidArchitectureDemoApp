@@ -6,7 +6,7 @@ class UserProfileDomainToViewStateMapper {
 
 
     fun map(domainUserProfile: UserProfile) =
-        UserProfileViewState(
+        UserProfileContentState(
             title(domainUserProfile),
             generateImageUrl(domainUserProfile),
             role(domainUserProfile)

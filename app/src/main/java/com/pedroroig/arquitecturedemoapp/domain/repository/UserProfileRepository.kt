@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class UserProfileRepository {
 
-    fun getUserProfile(subscriber: SingleObserver<UserProfile>) =
+    fun getUserProfile(subscriber: SingleObserver<UserProfile>) {
         Single.just(
             UserProfile(
                 "Robert",
@@ -27,4 +27,5 @@ class UserProfileRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(subscriber)
+    }
 }

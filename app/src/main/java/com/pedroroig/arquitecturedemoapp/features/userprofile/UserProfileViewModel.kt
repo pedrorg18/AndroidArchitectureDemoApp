@@ -14,13 +14,18 @@ class UserProfileViewModel : ViewModel() {
     val viewStateLiveData = MutableLiveData<UserProfileViewState>()
 
     fun load() {
+        viewStateLiveData.value = UserProfileViewState
+            .LoadingState
+
         repo.getUserProfile(object : SingleObserver<UserProfile> {
             override fun onSuccess(t: UserProfile) {
-                viewStateLiveData.value = UserProfileDomainToViewStateMapper().map(t)
+                viewStateLiveData.value = UserProfileViewState
+                    .ContentState(UserProfileDomainToViewStateMapper().map(t))
             }
 
             override fun onError(e: Throwable) {
-                viewStateLiveData.value = errorViewState("There was an error retrieving user data")
+                viewStateLiveData.value = UserProfileViewState
+                    .ErrorState("There was an error retrieving user data")
             }
 
             override fun onSubscribe(d: Disposable) {}
@@ -28,8 +33,5 @@ class UserProfileViewModel : ViewModel() {
         })
 
     }
-
-    private fun errorViewState(errorMessage: String) =
-        UserProfileViewState (null, null, null, errorMessage)
 
 }
